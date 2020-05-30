@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Activity Lifecycle</string>
+    <string name="new_app_name">Avengers Assemble</string>
+    <string name="mobile_number">Enter the mobile number</string>
+    <string name="password">Enter password</string>
+    <string name="log_in">Log In</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="register">Register</string>
+</resources>

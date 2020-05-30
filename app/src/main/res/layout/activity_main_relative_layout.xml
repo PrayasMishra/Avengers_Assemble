@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtLayoutHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="8dp"
+        android:text="Hi my name is Anthony Gonsalves."
+        android:textColor="#F8030D"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+     />
+
+    <TextView
+        android:id="@+id/txtLayoutSubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLayoutHeader"
+        android:text="  Android is fun"
+        android:textColor="#1B38AC" />
+
+    <ImageView
+        android:id="@+id/imgPikachu"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/pikachu" />
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@id/txtLayoutSubHeader "
+        android:hint="enter your value here...."
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btnClickMe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="#1b3"
+        android:text="Click me!!"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+</RelativeLayout>
