@@ -24,10 +24,11 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
 
         sharedPreferences = getSharedPreferences(getString(R.string.preference_file_name), Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false)
+
+        setContentView(R.layout.activity_login)
 
         if (isLoggedIn) {
             val intent = Intent(this@LoginActivity,AvengersActivity::class.java)
@@ -73,16 +74,31 @@ class LoginActivity : AppCompatActivity() {
                         savePreferences(nameOfAvenger)
                         startActivity(intent)
                     }
+                    else -> Toast.makeText(this@LoginActivity,
+                        "Incorrect Password",
+                        Toast.LENGTH_LONG).show()
                 }
+
             }
-            else
-            {
+            else {
                 Toast.makeText(this@LoginActivity
                     , "Incorrect details"
                     , Toast.LENGTH_SHORT
                 ).show()
             }
         }
+
+
+        txtForgotPassword.setOnClickListener {
+            val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
+        /*
+        txtRegisterYourself.setOnClickListener {
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+        */
     }
 
     override fun onPause() {
