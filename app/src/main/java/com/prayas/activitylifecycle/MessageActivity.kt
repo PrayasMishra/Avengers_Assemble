@@ -12,7 +12,9 @@ class MessageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message)
 
-        txtMessage = findViewById(R.id.txtMessage)
-        txtMessage.text = intent.getStringExtra("msg")
+        if (intent!=null) {
+            txtMessage = findViewById(R.id.txtMessage)
+            txtMessage.text = intent.getStringExtra("msg")
+        }
     }
 }

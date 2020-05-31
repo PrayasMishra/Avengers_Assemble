@@ -1,6 +1,9 @@
 package com.prayas.activitylifecycle
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.icu.text.CaseMap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -15,12 +18,22 @@ class LoginActivity : AppCompatActivity() {
     lateinit var btnLogin : Button
     lateinit var txtForgotPassword : TextView
     lateinit var txtRegister : TextView
-    val validMobileNumber = "0123456789"
-    val validPassword = arrayListOf<String>("tony","steve","bruce","thanos")
+    private val validMobileNumber = "0123456789"
+    private val validPassword = arrayListOf<String>("tony","steve","bruce","thanos")
+    lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        sharedPreferences = getSharedPreferences(getString(R.string.preference_file_name), Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false)
+
+        if (isLoggedIn) {
+            val intent = Intent(this@LoginActivity,AvengersActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         title = "Login"
         etMobileNumber = findViewById(R.id.etMobileNumber)
@@ -39,25 +52,25 @@ class LoginActivity : AppCompatActivity() {
                 when (password) {
                     validPassword[0] -> {
                         nameOfAvenger = "Tony Stark / Iron Man"
-                        intent.putExtra("name", nameOfAvenger)
+                        savePreferences(nameOfAvenger)
                         startActivity(intent)
                     }
 
                     validPassword[1] -> {
                         nameOfAvenger = "Captain Steven Rogers / Captain America"
-                        intent.putExtra("name", nameOfAvenger)
+                        savePreferences(nameOfAvenger)
                         startActivity(intent)
                     }
 
                     validPassword[2] -> {
                         nameOfAvenger = "Dr. Bruce Banner / The Hulk"
-                        intent.putExtra("name", nameOfAvenger)
+                        savePreferences(nameOfAvenger)
                         startActivity(intent)
                     }
 
                     validPassword[3] -> {
                         nameOfAvenger = "The Avengers"
-                        intent.putExtra("name", nameOfAvenger)
+                        savePreferences(nameOfAvenger)
                         startActivity(intent)
                     }
                 }
@@ -75,5 +88,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         finish()
+    }
+
+    fun savePreferences(title: String){
+        sharedPreferences.edit().putBoolean("IsLoggedIn",true).apply()
+        sharedPreferences.edit().putString("Title",title).apply()
     }
 }
